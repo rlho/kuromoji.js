@@ -101,6 +101,7 @@ DictionaryLoader.prototype.load = function (load_callback) {
               pos_buffer,
               target_map_buffer
             );
+            console.log("done loadTokenInfoDictionaries");
             callback(null);
           }
         );
@@ -113,8 +114,10 @@ DictionaryLoader.prototype.load = function (load_callback) {
             if (err) {
               return callback(err);
             }
+            console.log("done Connection cost matrix");
             var cc_buffer = new Int16Array(buffer);
             dic.loadConnectionCosts(cc_buffer);
+            console.log("done loadConnectionCosts");
             callback(null);
           }
         );
@@ -137,6 +140,7 @@ DictionaryLoader.prototype.load = function (load_callback) {
                 if (err) {
                   return _callback(err);
                 }
+                console.log("done loadArrayBuffer");
                 _callback(null, buffer);
               }
             );
@@ -161,6 +165,7 @@ DictionaryLoader.prototype.load = function (load_callback) {
             var alignedBuffer = buffers[4].slice(0, alignedLength);
             var compat_cat_map_buffer = new Uint32Array(alignedBuffer);
             var invoke_def_buffer = new Uint8Array(buffers[5]);
+            console.log("invoke def buffer");
 
             dic.loadUnknownDictionaries(
               unk_buffer,
@@ -170,6 +175,7 @@ DictionaryLoader.prototype.load = function (load_callback) {
               compat_cat_map_buffer,
               invoke_def_buffer
             );
+            console.log("done loadUnknownDictionaries");
             // dic.loadUnknownDictionaries(char_buffer, unk_buffer);
             callback(null);
           }
